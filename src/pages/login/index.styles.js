@@ -1,107 +1,68 @@
 import styled from 'styled-components';
 
-export const Section = styled.section`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin-top: 80px;
-  width: 100%;
-  form {
-    align-items: center;
-  background-color: rgba(245, 246, 250, 0.65);
-  border-radius: 20px;
-  box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  justify-content: space-around;
-  padding: 20px;
-  width: 35%;
-    h3 {
-      font-size: 1.4rem;
-
-    }
-    div {
-    display: flex;
-    flex-direction: column;
-    width: 327px;
-    height: 56px;
-
-    }
-
-    input {
-      /* width: 90%; */
-      display: flex;
-    }
-    button {
-      align-items: center;
-  background-color: #218c74;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  font-size: 18px;
-  font-weight: 600;
-  height: 35px;
-  justify-content: center;
-  margin-top: 10px;
-  opacity: 1;
-  outline: none;
-  padding: 0 5px;
+export const MainDiv = styled.div`
+h2 {
+  color: #000000;
+  font-size: 27px;
+  font-weight: bold; 
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+p {
+  color: #2E3E5C;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 25px;
   text-align: center;
-  text-decoration: none;
-  transition: 0.5s;
-  /* width: 250px; */
-  width: 319px;
-
-    }
-    button:hover {
-  opacity: 0.5;
-  transition: 0.5s;
+  letter-spacing: 0.5px;
 }
-a {
-  text-decoration: none;
-}
-}
-`
-// height: 100%;
-//     display: flex;
-//     width: 100%;
-//     align-items: center;
-//     justify-content: center;
-//   background-color: green;
-//   form {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     align-items: center;
-//     position: relative;
-//     margin-bottom: 20px;
-//     background-color: grey;
-//     h3 {
-//       font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  
+`;
 
-//     }
-//     div {
-//     display: flex;
-//     flex-direction: column;
-//     width: 327px;
-//     height: 56px;
-//     /* align-items: center; */
+export const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 50%;
+  align-items: center;
+  justify-content: center;
 
-//     }
+  input {
+    background: #FFFFFF;
+    border: 1px solid #D0DBEA;
+    box-sizing: border-box;
+    border-radius: 32px;
+    Width: 327px;
+    Height: 56px;
+    margin-bottom: 15px ;
+    outline: none;
+    padding: .5rem 3.5rem .5rem 3.5rem ;
+    font-size: 20px;
+  }
 
-//     input {
-//       /* width: 90%; */
-//       display: flex;
-//     }
-//     button {
-//       display: flex;
-//       width: 200px;
-//       justify-content: center;
-//       align-items: center;
-//     }
-// }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 19px 32px;
+    Width: 327px;
+    Height: 56px;
+    background: #C90000;
+    border-radius: 32px;
+    color: white;
+    font-size: 18px;
+  }
+`;
+
+export const LogoImg = styled.img`
+    width: 327px;
+    height: 140px;
+`;

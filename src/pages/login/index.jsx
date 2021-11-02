@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link, Redirect  } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import * as S from  './index.styles'
 import { validateIfFieldsAreCorrect } from "../../helpers/verifyFunctions/login_validate";
 import { loginUser } from "../../services/api";
+import Logo from '../imgs/iconedoApp3.jpg';
+
 
 const userDefault = {
   email: '',
@@ -25,6 +27,7 @@ const Login = () => {
       return;
     }
     const login = await loginUser(user);
+    console.log(login, 'login')
     if (login) {
       localStorage.setItem('token', login.token);
       localStorage.setItem('usermail', user.email);
@@ -36,32 +39,32 @@ const Login = () => {
   const renderInputs = () => {
     return(
       <S.Section>
-        <form>
-        <h3> Login </h3>
         <div>
             <label htmlFor="e-mail">E-mail:</label><br />
             <input type="text" name="email" onChange={handleChange} />
         </div>
         <div>
             <label htmlFor="password">Senha:</label><br />
-            <input type="text" name="password" onChange={handleChange}  />
+            <input type="password" name="password" onChange={handleChange}  />
         </div>
         <div>
             <button type="button" onClick={ handleclick }>Entrar </button >
         </div>
         <div>
-            <Link to="/register">Cadastre-se</Link>
+            <Link to="/signup">Cadastre-se</Link>
         </div>
-          </form>
       </S.Section>
     )
   }
 
   return (
-    <div>
+    <S.MainDiv>
+      <S.LogoImg src={ Logo } alt="Logo" />
+      <h2>Bem Vindo!</h2>
+      <p>Acesse sua conta aqui!</p>
       {renderInputs()}
       {redirect && <Redirect to="/inicio" />}
-    </div>
+    </S.MainDiv>
   )
 }
 
