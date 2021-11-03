@@ -10,14 +10,14 @@ export const MainDiv = styled.div`
     display: flex;
     /* margin-top: 55px; */
     height: 60px;
-    background-color: hotpink;
+    /* background-color: hotpink; */
     width: 100%;
     justify-content: center;
     h5 {
       padding: 0.5em;
     }
   }
-  
+
   button{
     display: flex;
     align-items: center;
@@ -34,7 +34,7 @@ export const MainDiv = styled.div`
       font-size: 1.4em;
       margin-right: 5px;
     }
-
+    margin-bottom: 20px;
   }
   table {
   width: 100%;
@@ -79,27 +79,26 @@ tbody tr:hover {
 `
 
 export const TdDate = styled.td`
-/* background-color: green; */
-  /* font-size: 11px; */
+
 `
 
 export const FormDiv = styled.div `
-  /* background-color: green; */
-  background-color: grey;
-  /* background-color: rgba(245, 246, 250, 0.65); */
-
+  flex-direction: column;
   width: 80% !important;
-  height: 80% !important; 
-  position: absolute;
-  margin-top: 90px;
-  margin-right: 20%;
-  margin-left: 10%;
-  /* box-shadow: inset 0 0 1em black; */
-
+  height: 60% !important; 
+  background-color: #eee; 
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+ -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  margin-top: 20px;
+  align-items: center;
   svg {
     font-size: 60px;
     right: 10px;
     position: absolute;
   }
 
+  form {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
 `

@@ -58,7 +58,6 @@ const Home = () => {
   const renderInsertTaskForm = () => {
     return (
       <S.FormDiv>
-        <GoX onClick={ handleInsertTask }/>
         <h1>Inserir Nova Tarefa: </h1>
       <form>
         <label htmlFor="tarefa">
@@ -72,6 +71,7 @@ const Home = () => {
           <option>fulano2 </option>
         </select>
         </label>
+        <button type="button">Criar</button> 
       </form>
       </S.FormDiv>
     )
@@ -79,11 +79,11 @@ const Home = () => {
 
   return (
     <div>
-    {insertTask && renderInsertTaskForm()}
     <S.MainDiv>
       <Header />
       <section>
       {renderTasksStatus()}
+    {insertTask && renderInsertTaskForm()}
       </section>
         <h1>Tarefas</h1>
       {renderTable()}
