@@ -63,7 +63,7 @@ const Login = () => {
       <h2>Bem Vindo!</h2>
       <p>Acesse sua conta aqui!</p>
       {renderInputs()}
-      {redirect && <Redirect to="/inicio" />}
+      {redirect && <Redirect to="/home" />}
     </S.MainDiv>
   )
 }
