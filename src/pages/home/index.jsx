@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/header";
 import * as S from './index.styles'
 import { FaPenSquare, FaPlusSquare, FaTrash, FaCheck} from 'react-icons/fa'
-import { getAllTasks } from '../../services/api'
+import { getAllTasks, updateTask } from '../../services/api'
 import RenderInsertTaskForm from "./components/insertTask";
 
 const defaultSort = {
@@ -14,13 +14,14 @@ const defaultCurrentTask = {
   employee: '', 
   date: '',
   status:'',
+  id: 0,
 }
 const Home = () => {
-  const [insertTask, setInsertTask] = useState(false)
+  const [visibleInsert, setVisibleInsert] = useState(false)
+  const [visibleUpdate, setVisibleUpdate] = useState(false)
   const [allTasks, setAllTasks] = useState([])
   const [sortType, setSortType] = useState(defaultSort)
   const [status, setStatus] = useState('Em andamento')
-  const [updateTask, setUpdateTask] = useState(false)
   const [currentId, setId] = useState(0)
   const [currentTask, setCurrentTask] = useState(defaultCurrentTask)
 
@@ -104,32 +105,34 @@ const Home = () => {
   }
 
   const handleClick = (id) => {
-    console.log('ra', id)
-    setUpdateTask(!updateTask)
+    setVisibleUpdate(!visibleUpdate)
     setId(id)
     const data = allTasks.filter((el) => el.id === id)
-    const { task, employee, date, status} = data[0] 
-    console.log(data, 'data', task)
+    const { task, employee, date, status } = data[0] 
     setCurrentTask({
       task,
       employee, 
       date,
-      status
+      status,
+      id
     });  }
 
   const checkId = (id) => {
-    if(updateTask && id === currentId) return true
+    if(visibleUpdate && id === currentId) return true
     return false
   }
 
 
 
-  const sendUpdateTask = (task, employee, date, status, id ) => {
+  const sendUpdateTask = async(task, employee, date, status, id ) => {
     console.log(task, employee, date, status, id, 'el')
+    setVisibleUpdate(!visibleUpdate)
+
+    await updateTask(currentTask)
+    return fetchTasks()
   }
 
   const changeTask = ({ target: { value, name } })=> {
-    console.log(value)
     setCurrentTask({
       ...currentTask,
       [name]: value,
@@ -180,7 +183,7 @@ const Home = () => {
           <td>{!checkId(id) ? employee : renderEmployeesSelect(employee) }</td>
           <td>{!checkId(id) ? date : <input type="date" name="date" defaultValue={date} onChange={changeTask} /> }</td>
           <td>{!checkId(id) ? status : renderStatusSelect(status) }</td>
-          <td><FaPenSquare class="fa-solid fa-pen-to-square"  onClick={() => handleClick(id)}/>  < FaTrash /> { checkId(id)  && <FaCheck onClick={() => sendUpdateTask(task, employee, date, status, id)} />}  </td>
+          <td><FaPenSquare class="fa-solid fa-pen-to-square"  onClick={() => handleClick(id)}/>  < FaTrash /> { checkId(id)  && <FaCheck onClick={() => sendUpdateTask(task, employee, date, status, id)}/>}  </td>
           </tbody> 
         )) 
       }
@@ -189,7 +192,7 @@ const Home = () => {
   }
 
   const handleInsertTask = () => {
-    return setInsertTask(!insertTask)
+    return setVisibleInsert(!visibleInsert)
   }
 
 
@@ -199,7 +202,7 @@ const Home = () => {
       <Header />
       <section>
       {renderTasksStatus()}
-    {insertTask && <RenderInsertTaskForm />}
+    {visibleInsert && <RenderInsertTaskForm />}
       </section>
         <h1>Tarefas</h1>
       { allTasks && renderTable()}

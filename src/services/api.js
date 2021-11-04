@@ -76,4 +76,26 @@ const createTask = async (newTask) => {
   return data;
 };
 
-export { loginUser, registerNewUser, getAllTasks, createTask }
+const updateTask = async (task) => {
+  const endpoint = `http://localhost:3003/tasks`;
+  const token = localStorage.getItem('token');
+  console.log(task, 'task')
+  const responses = await fetch(endpoint, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+    body: JSON.stringify({ ...task}),
+
+  })
+    .then((response) => response.json())
+    .catch((err) => err);
+
+  const data = await responses;
+
+  return data;
+};
+
+
+export { loginUser, registerNewUser, getAllTasks, createTask, updateTask }
