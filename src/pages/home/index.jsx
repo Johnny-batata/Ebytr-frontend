@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useContext } from "react";
 import Header from "./components/header";
 import * as S from './index.styles'
 import { FaPenSquare, FaPlusSquare, FaTrash, FaCheck} from 'react-icons/fa'
-import { getAllTasks, updateTask } from '../../services/api'
+import {  updateTask, removeTask } from '../../services/api'
 import RenderInsertTaskForm from "./components/insertTask";
+import { Context } from "../../provider/Provider";
 
 const defaultSort = {
   name: 'task',
@@ -17,18 +19,14 @@ const defaultCurrentTask = {
   id: 0,
 }
 const Home = () => {
+  const { allTasks, fetchTasks } = useContext(Context)
   const [visibleInsert, setVisibleInsert] = useState(false)
   const [visibleUpdate, setVisibleUpdate] = useState(false)
-  const [allTasks, setAllTasks] = useState([])
   const [sortType, setSortType] = useState(defaultSort)
   const [status, setStatus] = useState('Em andamento')
   const [currentId, setId] = useState(0)
   const [currentTask, setCurrentTask] = useState(defaultCurrentTask)
 
-  const fetchTasks = async()=> {
-    const data = await getAllTasks()
-    setAllTasks(data.data)
-  }
   useEffect(() => {
     fetchTasks()
   }, [])
@@ -41,6 +39,10 @@ const Home = () => {
     });
 
   target.classList.add('selected')
+  }
+
+  const handleInsertTask = () => {
+    return setVisibleInsert(!visibleInsert)
   }
 
   const renderTasksStatus = () => {
@@ -122,10 +124,7 @@ const Home = () => {
     return false
   }
 
-
-
   const sendUpdateTask = async(task, employee, date, status, id ) => {
-    console.log(task, employee, date, status, id, 'el')
     setVisibleUpdate(!visibleUpdate)
 
     await updateTask(currentTask)
@@ -159,6 +158,10 @@ const Home = () => {
       </select>
     )
   }
+  const removeOneTask = async(id) => {
+     await removeTask(id)
+     return fetchTasks()
+  }
 
   const renderTable = () => {
     return (
@@ -183,18 +186,16 @@ const Home = () => {
           <td>{!checkId(id) ? employee : renderEmployeesSelect(employee) }</td>
           <td>{!checkId(id) ? date : <input type="date" name="date" defaultValue={date} onChange={changeTask} /> }</td>
           <td>{!checkId(id) ? status : renderStatusSelect(status) }</td>
-          <td><FaPenSquare class="fa-solid fa-pen-to-square"  onClick={() => handleClick(id)}/>  < FaTrash /> { checkId(id)  && <FaCheck onClick={() => sendUpdateTask(task, employee, date, status, id)}/>}  </td>
+          <td>
+            <FaPenSquare class="fa-solid fa-pen-to-square"  onClick={() => handleClick(id)}/>  
+            <FaTrash onClick={() => removeOneTask(id)}  /> { checkId(id)  && <FaCheck onClick={() => sendUpdateTask(task, employee, date, status, id)}/>}  
+          </td>
           </tbody> 
         )) 
       }
     </table>
     )
   }
-
-  const handleInsertTask = () => {
-    return setVisibleInsert(!visibleInsert)
-  }
-
 
   return (
     <div>

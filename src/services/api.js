@@ -97,5 +97,25 @@ const updateTask = async (task) => {
   return data;
 };
 
+const removeTask = async (id) => {
+  const endpoint = `http://localhost:3003/tasks/${id}`;
+  const token = localStorage.getItem('token');
+  console.log(id, 'task')
+  const responses = await fetch(endpoint, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => err);
 
-export { loginUser, registerNewUser, getAllTasks, createTask, updateTask }
+  const data = await responses;
+
+  return data;
+};
+
+
+
+export { loginUser, registerNewUser, getAllTasks, createTask, updateTask, removeTask }

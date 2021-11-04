@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { createTask } from '../../../services/api'
 import * as S from './insertTask.styles'
+import { Context } from "../../../provider/Provider";
+
 
 const taskDefault = {
   task: '',
@@ -10,6 +12,7 @@ const taskDefault = {
 }
 
 const RenderInsertTaskForm = () => {
+  const { fetchTasks } = useContext(Context)
 
   const [newTask, setNewTask] = useState(taskDefault)
 
@@ -21,8 +24,10 @@ const RenderInsertTaskForm = () => {
     };
     
     const sendTask = async() => {
-      console.log('clicou')
-      return createTask(newTask)
+      // await updateTask(currentTask)
+      await createTask(newTask)
+      return fetchTasks()      
+      // return createTask(newTask)   
     }
     
 
@@ -62,7 +67,7 @@ const RenderInsertTaskForm = () => {
         <option>Finalizados</option>
       </select>
       </label>
-      <button type="submit" onClick={ sendTask } >Criar</button> 
+      <button type="button" onClick={ sendTask } >Criar</button> 
     </form>
     </S.FormDiv>
   )
