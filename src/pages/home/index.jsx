@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/header";
 import * as S from './index.styles'
-import { FaPenSquare, FaPlusSquare, FaTrash} from 'react-icons/fa'
-import { getAllTasks, createTask } from '../../services/api'
-
-const taskDefault = {
-  task: '',
-  employee: '', 
-  date: '',
-  status:'',
-
-}
+import { FaPenSquare, FaPlusSquare, FaTrash, FaCheck} from 'react-icons/fa'
+import { getAllTasks } from '../../services/api'
+import RenderInsertTaskForm from "./components/insertTask";
 
 const defaultSort = {
   name: 'task',
@@ -20,9 +13,10 @@ const defaultSort = {
 const Home = () => {
   const [insertTask, setInsertTask] = useState(false)
   const [allTasks, setAllTasks] = useState([])
-  const [newTask, setNewTask] = useState(taskDefault)
   const [sortType, setSortType] = useState(defaultSort)
   const [status, setStatus] = useState('Em andamento')
+  const [updateTask, setUpdateTask] = useState(false)
+  const [currentId, setId] = useState(0)
 
   const fetchTasks = async()=> {
     const data = await getAllTasks()
@@ -103,6 +97,17 @@ const Home = () => {
     })
   }
 
+  const handleClick = (id) => {
+    console.log('ra', id)
+    setUpdateTask(!updateTask)
+    setId(id)
+  }
+
+  const checkId = (id) => {
+    if(updateTask && id === currentId) return true
+    return false
+  }
+
   const renderTable = () => {
     return (
       <table>
@@ -121,10 +126,10 @@ const Home = () => {
         .map(({ task, employee, date, id}) =>  (
           <tbody key={id}> 
           <td>{id}</td>
-          <td>{task}</td>
-          <td>{employee}</td>
-          <td>{date}</td>
-          <td><FaPenSquare class="fa-solid fa-pen-to-square" />  < FaTrash /> </td>
+          <td>{!checkId(id) ? task : <input type="text"  value={task} /> }</td>
+          <td>{!checkId(id) ? employee : <input type="text"  value={employee} /> }</td>
+          <td>{!checkId(id) ? date : <input type="date"  value={date} /> }</td>
+          <td><FaPenSquare class="fa-solid fa-pen-to-square"  onClick={() => handleClick(id)}/>  < FaTrash /> { checkId(id)  &&<FaCheck />}  </td>
           </tbody> 
         )) 
       }
@@ -136,60 +141,6 @@ const Home = () => {
     return setInsertTask(!insertTask)
   }
 
-  const handleNewTask = ({ target: { value, name } }) => {
-    setNewTask({
-      ...newTask,
-      [name]: value,
-    });
-  };
-
-  const sendTask = async() => {
-    console.log('clicou')
-    return createTask(newTask)
-  }
-
-  const renderInsertTaskForm = () => {
-    return (
-      <S.FormDiv>
-        <h1>Inserir Nova Tarefa: </h1>
-      <form>
-        <label htmlFor="task">
-          Tarefa:
-        <input type="text" name="task"placeholder="digite aqui..."  onChange={handleNewTask}/>
-        </label>
-        <label htmlFor="employee" onChange={handleNewTask}>
-          Responsável:
-        <select name="employee" onChange={handleNewTask}>
-        <option value="" selected disabled hidden>Selecione</option>
-          <option>fulano1 </option>
-          <option>fulano2 </option>
-        </select>
-        </label>
-        <label htmlFor="date">
-          Data de inicio:
-        <input
-        type="date"
-        data-date=""
-        name="date"
-        data-date-format="DD MMMM YYYY"
-        required
-        onChange={handleNewTask}
-      />
-      </label>
-      <label htmlFor="status" onChange={handleNewTask}>
-        Status:
-      <select name="status" onChange={handleNewTask}>
-      <option value="" selected disabled hidden>Selecione</option>
-          <option>Em andamento</option>
-          <option>Pendentes</option>
-          <option>Finalizados</option>
-        </select>
-        </label>
-        <button type="submit" onClick={ sendTask } >Criar</button> 
-      </form>
-      </S.FormDiv>
-    )
-  }
 
   return (
     <div>
@@ -197,7 +148,7 @@ const Home = () => {
       <Header />
       <section>
       {renderTasksStatus()}
-    {insertTask && renderInsertTaskForm()}
+    {insertTask && <RenderInsertTaskForm />}
       </section>
         <h1>Tarefas</h1>
       { allTasks && renderTable()}
