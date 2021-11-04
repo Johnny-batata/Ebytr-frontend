@@ -179,7 +179,7 @@ const Home = () => {
       {
         sortAll()
         .filter((el) => el.status === status)
-        .map(({ task, employee, date, id, status}, el) =>  (
+        .map(({ task, employee, date, id, status}) =>  (
           <tbody key={id}> 
           <td>{id}</td>
           <td>{!checkId(id) ? task : <input type="text" name="task" defaultValue={task} onChange={changeTask} /> }</td>
