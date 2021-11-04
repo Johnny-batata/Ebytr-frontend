@@ -7,7 +7,6 @@ const taskDefault = {
   employee: '', 
   date: '',
   status:'',
-
 }
 
 const RenderInsertTaskForm = () => {

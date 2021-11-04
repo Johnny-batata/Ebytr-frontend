@@ -9,7 +9,12 @@ const defaultSort = {
   name: 'task',
   asc: true
 }
-
+const defaultCurrentTask = {
+  task: '',
+  employee: '', 
+  date: '',
+  status:'',
+}
 const Home = () => {
   const [insertTask, setInsertTask] = useState(false)
   const [allTasks, setAllTasks] = useState([])
@@ -17,6 +22,7 @@ const Home = () => {
   const [status, setStatus] = useState('Em andamento')
   const [updateTask, setUpdateTask] = useState(false)
   const [currentId, setId] = useState(0)
+  const [currentTask, setCurrentTask] = useState(defaultCurrentTask)
 
   const fetchTasks = async()=> {
     const data = await getAllTasks()
@@ -101,11 +107,54 @@ const Home = () => {
     console.log('ra', id)
     setUpdateTask(!updateTask)
     setId(id)
-  }
+    const data = allTasks.filter((el) => el.id === id)
+    const { task, employee, date, status} = data[0] 
+    console.log(data, 'data', task)
+    setCurrentTask({
+      task,
+      employee, 
+      date,
+      status
+    });  }
 
   const checkId = (id) => {
     if(updateTask && id === currentId) return true
     return false
+  }
+
+
+
+  const sendUpdateTask = (task, employee, date, status, id ) => {
+    console.log(task, employee, date, status, id, 'el')
+  }
+
+  const changeTask = ({ target: { value, name } })=> {
+    console.log(value)
+    setCurrentTask({
+      ...currentTask,
+      [name]: value,
+    });
+
+  }
+
+  const renderStatusSelect = (status) => {
+    return(
+      <select defaultValue={status} onChange={ changeTask} name="status">
+        <option>Em andamento</option>
+        <option>Pendentes</option>
+        <option>Finalizado</option>
+      </select>
+    )
+  }
+
+  const renderEmployeesSelect = (employee) => {
+    return(
+      <select name="employee" defaultValue={employee} onChange={changeTask}>
+      <option value="" selected disabled hidden>Selecione</option>
+        <option>fulano1 </option>
+        <option>fulano2 </option>
+      </select>
+    )
   }
 
   const renderTable = () => {
@@ -117,19 +166,21 @@ const Home = () => {
           <th onClick={  handleSort} id="task">Tarefa</th>
           <th id="employee" onClick={  handleSort}>Responsável</th>
           <th id="date" onClick={  handleSort}>Data de inicio</th>
+          <th id="status">Status</th>
           <th>Edit</th>
         </tr>
       </thead>
       {
         sortAll()
         .filter((el) => el.status === status)
-        .map(({ task, employee, date, id}) =>  (
+        .map(({ task, employee, date, id, status}, el) =>  (
           <tbody key={id}> 
           <td>{id}</td>
-          <td>{!checkId(id) ? task : <input type="text"  value={task} /> }</td>
-          <td>{!checkId(id) ? employee : <input type="text"  value={employee} /> }</td>
-          <td>{!checkId(id) ? date : <input type="date"  value={date} /> }</td>
-          <td><FaPenSquare class="fa-solid fa-pen-to-square"  onClick={() => handleClick(id)}/>  < FaTrash /> { checkId(id)  &&<FaCheck />}  </td>
+          <td>{!checkId(id) ? task : <input type="text" name="task" defaultValue={task} onChange={changeTask} /> }</td>
+          <td>{!checkId(id) ? employee : renderEmployeesSelect(employee) }</td>
+          <td>{!checkId(id) ? date : <input type="date" name="date" defaultValue={date} onChange={changeTask} /> }</td>
+          <td>{!checkId(id) ? status : renderStatusSelect(status) }</td>
+          <td><FaPenSquare class="fa-solid fa-pen-to-square"  onClick={() => handleClick(id)}/>  < FaTrash /> { checkId(id)  && <FaCheck onClick={() => sendUpdateTask(task, employee, date, status, id)} />}  </td>
           </tbody> 
         )) 
       }
