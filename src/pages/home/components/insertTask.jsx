@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { createTask } from '../../../services/api';
 import * as S from './insertTask.styles';
 import { Context } from '../../../provider/Provider';
+import validateInsertForm from '../../../helpers/verifyFunctions/insertTask_validateForm';
 
 const taskDefault = {
   task: '',
@@ -11,7 +12,7 @@ const taskDefault = {
 };
 
 const RenderInsertTaskForm = () => {
-  const { fetchTasks } = useContext(Context);
+  const { fetchTasks, renderEmployeesSelect } = useContext(Context);
 
   const [newTask, setNewTask] = useState(taskDefault);
 
@@ -23,8 +24,10 @@ const RenderInsertTaskForm = () => {
   };
 
   const sendTask = async () => {
-    await createTask(newTask);
-    return fetchTasks();
+    if (validateInsertForm(newTask)) {
+      await createTask(newTask);
+      return fetchTasks();
+    }
   };
 
   return (
@@ -33,6 +36,7 @@ const RenderInsertTaskForm = () => {
       <form>
         <label htmlFor="task">
           Tarefa:
+          {' '}
           <input
             type="text"
             name="task"
@@ -42,14 +46,14 @@ const RenderInsertTaskForm = () => {
         </label>
         <label htmlFor="employee" onChange={ handleNewTask }>
           Responsável:
-          <select name="employee" onChange={ handleNewTask }>
-            <option value="" selected disabled hidden>Selecione</option>
-            <option>fulano1 </option>
-            <option>fulano2 </option>
-          </select>
+          {' '}
+
+          { renderEmployeesSelect()}
         </label>
         <label htmlFor="date">
           Data de inicio:
+          {' '}
+
           <input
             type="date"
             data-date=""
@@ -61,6 +65,8 @@ const RenderInsertTaskForm = () => {
         </label>
         <label htmlFor="status" onChange={ handleNewTask }>
           Status:
+          {' '}
+
           <select name="status" onChange={ handleNewTask }>
             <option value="" selected disabled hidden>Selecione</option>
             <option>Em andamento</option>

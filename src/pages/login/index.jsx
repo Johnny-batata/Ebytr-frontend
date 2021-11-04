@@ -26,7 +26,6 @@ const Login = () => {
       return;
     }
     const login = await loginUser(user);
-    console.log(login, 'login');
     if (login) {
       localStorage.setItem('token', login.token);
       localStorage.setItem('usermail', user.email);

@@ -1,5 +1,5 @@
 import { INVALID_EMAIL_PASSWORD, EMPTY_FIELD } from '../errorMsgs';
-import invokeAlert from "../functions/invokeAlert";
+import invokeAlert from '../functions/invokeAlert';
 
 export const validateIfFieldsAreFilled = (data) => {
   const { email, password } = data;
@@ -22,4 +22,3 @@ export const validateIfFieldsAreCorrect = (data) => {
 
   return true;
 };
-

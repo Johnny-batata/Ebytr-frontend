@@ -13,24 +13,19 @@ const defaultSort = {
   name: 'task',
   asc: true,
 };
-const defaultCurrentTask = {
-  task: '',
-  employee: '',
-  date: '',
-  status: '',
-  id: 0,
-};
+
 const Home = () => {
-  const { allTasks, fetchTasks } = useContext(Context);
+  const { allTasks, fetchTasks,
+    fetchUser, renderEmployeesSelect, currentTask, setCurrentTask } = useContext(Context);
   const [visibleInsert, setVisibleInsert] = useState(false);
   const [visibleUpdate, setVisibleUpdate] = useState(false);
   const [sortType, setSortType] = useState(defaultSort);
   const [currentStatus, setCurrentStatus] = useState('Em andamento');
   const [currentId, setId] = useState(0);
-  const [currentTask, setCurrentTask] = useState(defaultCurrentTask);
 
   useEffect(() => {
     fetchTasks();
+    fetchUser();
   }, []);
 
   const handleTasksStatus = ({ target, target: { name } }) => {
@@ -72,7 +67,6 @@ const Home = () => {
   const sortAll = () => {
     const { asc, name } = sortType;
     if (asc === false) {
-      console.log('falso');
       return allTasks.sort((a, b) => {
         if (b[name] < a[name]) {
           return 1;
@@ -148,14 +142,6 @@ const Home = () => {
       <option>Em andamento</option>
       <option>Pendentes</option>
       <option>Finalizado</option>
-    </select>
-  );
-
-  const renderEmployeesSelect = (employee) => (
-    <select name="employee" defaultValue={ employee } onChange={ changeTask }>
-      <option value="" selected disabled hidden>Selecione</option>
-      <option>fulano1 </option>
-      <option>fulano2 </option>
     </select>
   );
   const removeOneTask = async (id) => {

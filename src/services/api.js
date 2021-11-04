@@ -119,4 +119,27 @@ const removeTask = async (id) => {
   return data;
 };
 
-export { loginUser, registerNewUser, getAllTasks, createTask, updateTask, removeTask };
+const getAllUser = async () => {
+  const endpoint = 'http://localhost:3003/user';
+  const token = localStorage.getItem('token');
+
+  const responses = fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      'Content-Type': contentJson,
+      authorization: token,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((err) => err);
+
+  const data = await responses;
+  if (data.err) { return invokeAlert(data.err.message); }
+
+  return data;
+};
+
+export {
+  loginUser,
+  registerNewUser, getAllTasks, createTask, updateTask, removeTask, getAllUser };

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const SectionDefault = styled.section`
-    background-color: orange;
+    background-color: #F08080;
+    color: white;
     height: 56px;
     display: flex;
     align-items: center;
     width: 100%;
     position:  fixed;
-    justify-content: space-between;
+    justify-content: center;
     top: 0;
     svg {
       width: 27px;
@@ -18,6 +19,7 @@ export const SectionDefault = styled.section`
       position: relative;
       display: flex;
       align-items: center;
+      left: 42%;
     }
 `;
 

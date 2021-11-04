@@ -1,4 +1,2 @@
-const invokeAlert = (msg)=> {
-  return alert(msg)
-}
+const invokeAlert = (msg) => alert(msg);
 export default invokeAlert;

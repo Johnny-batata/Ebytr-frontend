@@ -25,6 +25,11 @@ export const MainDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    button {
+      height: 40px;
+    }
+
+
     svg {
       font-size: 1.4em;
       margin-right: 5px;
@@ -48,6 +53,18 @@ tbody td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  height: 40px;
+
+  svg {
+    height: 20px;
+    width: 18px;  
+  }
+  svg:hover {
+  color: #bebebe;
+  /* color: #eee; */
+}
+
+
 
 }
 tbody td:hover {
@@ -77,6 +94,7 @@ export const FormDiv = styled.div`
     font-size: 60px;
     right: 10px;
     position: absolute;
+
   }
 
   form {
@@ -84,5 +102,8 @@ export const FormDiv = styled.div`
     margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
+    button :nth-child(6) {
+      background-color: green;
+    }
   }
 `;
