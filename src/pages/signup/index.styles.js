@@ -57,7 +57,7 @@ export const MainDiv = styled.div`
 
     }
   }
-`
+`;
 
 export const LogoImg = styled.img`
     width: 327px;

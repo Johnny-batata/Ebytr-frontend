@@ -1,11 +1,14 @@
 import invokeAlert from '../helpers/functions/invokeAlert';
 
+const tasksRoute = 'http://localhost:3003/tasks';
+const contentJson = 'application/json';
+
 const registerNewUser = async (newUSer) => {
   const endpoint = 'http://localhost:3003/signup';
   const responses = fetch(endpoint, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': contentJson,
     },
     body: JSON.stringify({ ...newUSer }),
   })
@@ -24,7 +27,7 @@ const loginUser = async (user) => {
   const responses = fetch(endpoint, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': contentJson,
     },
     body: JSON.stringify({ ...user }),
   })
@@ -39,12 +42,12 @@ const loginUser = async (user) => {
 };
 
 const getAllTasks = async () => {
-  const endpoint = `http://localhost:3003/tasks`;
+  const endpoint = tasksRoute;
   const token = localStorage.getItem('token');
   const responses = await fetch(endpoint, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': contentJson,
       authorization: token,
     },
   })
@@ -57,15 +60,15 @@ const getAllTasks = async () => {
 };
 
 const createTask = async (newTask) => {
-  const endpoint = `http://localhost:3003/tasks`;
+  const endpoint = tasksRoute;
   const token = localStorage.getItem('token');
   const responses = await fetch(endpoint, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': contentJson,
       authorization: token,
     },
-    body: JSON.stringify({ ...newTask}),
+    body: JSON.stringify({ ...newTask }),
 
   })
     .then((response) => response.json())
@@ -77,16 +80,16 @@ const createTask = async (newTask) => {
 };
 
 const updateTask = async (task) => {
-  const endpoint = `http://localhost:3003/tasks`;
+  const endpoint = tasksRoute;
   const token = localStorage.getItem('token');
-  console.log(task, 'task')
+  console.log(task, 'task');
   const responses = await fetch(endpoint, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': contentJson,
       authorization: token,
     },
-    body: JSON.stringify({ ...task}),
+    body: JSON.stringify({ ...task }),
 
   })
     .then((response) => response.json())
@@ -100,11 +103,11 @@ const updateTask = async (task) => {
 const removeTask = async (id) => {
   const endpoint = `http://localhost:3003/tasks/${id}`;
   const token = localStorage.getItem('token');
-  console.log(id, 'task')
+  console.log(id, 'task');
   const responses = await fetch(endpoint, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': contentJson,
       authorization: token,
     },
   })
@@ -116,6 +119,4 @@ const removeTask = async (id) => {
   return data;
 };
 
-
-
-export { loginUser, registerNewUser, getAllTasks, createTask, updateTask, removeTask }
+export { loginUser, registerNewUser, getAllTasks, createTask, updateTask, removeTask };

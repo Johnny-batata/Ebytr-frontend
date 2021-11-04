@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FormDiv = styled.div `
+export const FormDiv = styled.div`
   flex-direction: column;
   width: 80% !important;
   height: 60% !important; 
@@ -21,4 +21,4 @@ export const FormDiv = styled.div `
     display: flex;
     flex-wrap: wrap;
   }
-`
+`;

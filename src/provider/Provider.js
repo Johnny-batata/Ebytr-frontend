@@ -6,21 +6,17 @@ import { getAllTasks } from '../services/api';
 const Context = createContext();
 
 const Provider = ({ children }) => {
+  const [allTasks, setAllTasks] = useState([]);
 
-  const [allTasks, setAllTasks] = useState([])
-
-
-  const fetchTasks = async()=> {
-    const data = await getAllTasks()
-    setAllTasks(data.data)
-  }
-
+  const fetchTasks = async () => {
+    const data = await getAllTasks();
+    setAllTasks(data.data);
+  };
 
   const context = {
     fetchTasks,
-    allTasks
+    allTasks,
   };
-
 
   return (
     <Context.Provider value={ context }>{children}</Context.Provider>

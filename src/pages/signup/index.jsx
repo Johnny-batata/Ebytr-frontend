@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import { Redirect } from 'react-router-dom';
 import { registerNewUser } from '../../services/api';
-import { validateIfFieldsAreCorrect } from '../../helpers/verifyFunctions/signUp_validateEmail';
-import { ButtonLogin, MainDiv, LogoImg} from './index.styles'
+import { validateIfFieldsAreCorrect,
+} from '../../helpers/verifyFunctions/signUp_validateEmail';
+import { ButtonLogin, MainDiv, LogoImg } from './index.styles';
 import Logo from '../imgs/iconedoApp3.jpg';
-
 
 const userDefault = {
   name: '',
@@ -59,7 +59,7 @@ const SignUp = () => {
       />
 
       <input
-        type='password' 
+        type="password"
         onChange={ handleChange }
         name="password"
         placeholder="senha"
