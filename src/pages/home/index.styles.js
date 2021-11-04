@@ -2,15 +2,12 @@ import styled from 'styled-components';
 
 export const MainDiv = styled.div`
   display: flex;
-  /* justify-content: center; */
   justify-content: flex-start;
   flex-direction: column;
     align-items: center;
   div {
     display: flex;
-    /* margin-top: 55px; */
     height: 60px;
-    /* background-color: hotpink; */
     width: 100%;
     justify-content: center;
     h5 {
@@ -21,20 +18,17 @@ export const MainDiv = styled.div`
   button{
     display: flex;
     align-items: center;
-  }
-  section:nth-child(3) {
+    text-decoration: none;
 
-    width: 100%;
+  }
+  section:nth-child(2) {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: 20px;
     svg {
       font-size: 1.4em;
       margin-right: 5px;
     }
-    margin-bottom: 20px;
   }
   table {
   width: 100%;
@@ -42,25 +36,18 @@ export const MainDiv = styled.div`
 }
 
 thead th {
-  /* text-align: left; */
   text-align: center;
   border-bottom: 2px solid black;
-  /* width: 10%; */
-  /* width: 16%; */
 }
 
 tbody td {
-  /* padding: 0.5em; */
   border-bottom: 1px solid #ccc;
   width: 16%;
   text-align: center;
-  /* white-space:pre; */
-    /* overflow:hidden; */
-    /* text-overflow: ellipsis; */
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
 }
 tbody td:hover {
@@ -77,11 +64,6 @@ tbody tr:hover {
 
 
 `
-
-export const TdDate = styled.td`
-
-`
-
 export const FormDiv = styled.div `
   flex-direction: column;
   width: 80% !important;
@@ -100,5 +82,7 @@ export const FormDiv = styled.div `
   form {
     margin-left: 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
   }
 `

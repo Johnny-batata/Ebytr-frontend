@@ -38,4 +38,42 @@ const loginUser = async (user) => {
   return data;
 };
 
-export { loginUser, registerNewUser }
+const getAllTasks = async () => {
+  const endpoint = `http://localhost:3003/tasks`;
+  const token = localStorage.getItem('token');
+  const responses = await fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => err);
+
+  const data = await responses;
+
+  return data;
+};
+
+const createTask = async (newTask) => {
+  const endpoint = `http://localhost:3003/tasks`;
+  const token = localStorage.getItem('token');
+  const responses = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+    body: JSON.stringify({ ...newTask}),
+
+  })
+    .then((response) => response.json())
+    .catch((err) => err);
+
+  const data = await responses;
+
+  return data;
+};
+
+export { loginUser, registerNewUser, getAllTasks, createTask }
