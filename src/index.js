@@ -7,7 +7,7 @@ import { Provider } from './provider/Provider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Provider>
         <App />
       </Provider>

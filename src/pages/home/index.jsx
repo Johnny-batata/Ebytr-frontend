@@ -43,7 +43,7 @@ const Home = () => {
   const renderTasksStatus = () => (
     <div>
       <button
-        onClick={ handleTasksStatus }
+        onClick={ handleTasksStatus } 
         className="selected"
         name="Em andamento"
         type="button"
