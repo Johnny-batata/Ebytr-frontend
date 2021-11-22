@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.d7c92d86.chunk.css",
-    "main.js": "/static/js/main.fb1f128d.chunk.js",
-    "main.js.map": "/static/js/main.fb1f128d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.c44f9cbc.js",
-    "runtime-main.js.map": "/static/js/runtime-main.c44f9cbc.js.map",
-    "static/js/2.f7560e83.chunk.js": "/static/js/2.f7560e83.chunk.js",
-    "static/js/2.f7560e83.chunk.js.map": "/static/js/2.f7560e83.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.c26c42a9c91b2ead7fdf0050f46aa6e5.js": "/precache-manifest.c26c42a9c91b2ead7fdf0050f46aa6e5.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.d7c92d86.chunk.css.map": "/static/css/main.d7c92d86.chunk.css.map",
-    "static/js/2.f7560e83.chunk.js.LICENSE.txt": "/static/js/2.f7560e83.chunk.js.LICENSE.txt",
-    "static/media/iconedoApp3.jpg": "/static/media/iconedoApp3.7562d48c.jpg"
+    "main.css": "/Ebytr-frontend/static/css/main.d7c92d86.chunk.css",
+    "main.js": "/Ebytr-frontend/static/js/main.57c959d4.chunk.js",
+    "main.js.map": "/Ebytr-frontend/static/js/main.57c959d4.chunk.js.map",
+    "runtime-main.js": "/Ebytr-frontend/static/js/runtime-main.c13d962e.js",
+    "runtime-main.js.map": "/Ebytr-frontend/static/js/runtime-main.c13d962e.js.map",
+    "static/js/2.371c2cb8.chunk.js": "/Ebytr-frontend/static/js/2.371c2cb8.chunk.js",
+    "static/js/2.371c2cb8.chunk.js.map": "/Ebytr-frontend/static/js/2.371c2cb8.chunk.js.map",
+    "index.html": "/Ebytr-frontend/index.html",
+    "precache-manifest.9354e3cfc90ef2e6d6142301e23ef375.js": "/Ebytr-frontend/precache-manifest.9354e3cfc90ef2e6d6142301e23ef375.js",
+    "service-worker.js": "/Ebytr-frontend/service-worker.js",
+    "static/css/main.d7c92d86.chunk.css.map": "/Ebytr-frontend/static/css/main.d7c92d86.chunk.css.map",
+    "static/js/2.371c2cb8.chunk.js.LICENSE.txt": "/Ebytr-frontend/static/js/2.371c2cb8.chunk.js.LICENSE.txt",
+    "static/media/iconedoApp3.jpg": "/Ebytr-frontend/static/media/iconedoApp3.7562d48c.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c44f9cbc.js",
-    "static/js/2.f7560e83.chunk.js",
+    "static/js/runtime-main.c13d962e.js",
+    "static/js/2.371c2cb8.chunk.js",
     "static/css/main.d7c92d86.chunk.css",
-    "static/js/main.fb1f128d.chunk.js"
+    "static/js/main.57c959d4.chunk.js"
   ]
 }
