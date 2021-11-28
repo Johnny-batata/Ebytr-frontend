@@ -1,10 +1,10 @@
 import invokeAlert from '../helpers/functions/invokeAlert';
 
-const tasksRoute = 'http://localhost:3003/tasks';
+const tasksRoute = 'https://johnny-ebytr-backend.herokuapp.com/tasks';
 const contentJson = 'application/json';
 
 const registerNewUser = async (newUSer) => {
-  const endpoint = 'http://localhost:3003/signup';
+  const endpoint = 'https://johnny-ebytr-backend.herokuapp.com/signup';
   const responses = fetch(endpoint, {
     method: 'POST',
     headers: {
@@ -23,7 +23,7 @@ const registerNewUser = async (newUSer) => {
 };
 
 const loginUser = async (user) => {
-  const endpoint = 'http://localhost:3003/login';
+  const endpoint = 'https://johnny-ebytr-backend.herokuapp.com/login';
   const responses = fetch(endpoint, {
     method: 'POST',
     headers: {
@@ -101,7 +101,7 @@ const updateTask = async (task) => {
 };
 
 const removeTask = async (id) => {
-  const endpoint = `http://localhost:3003/tasks/${id}`;
+  const endpoint = `https://johnny-ebytr-backend.herokuapp.com/tasks/${id}`;
   const token = localStorage.getItem('token');
   console.log(id, 'task');
   const responses = await fetch(endpoint, {
@@ -120,7 +120,7 @@ const removeTask = async (id) => {
 };
 
 const getAllUser = async () => {
-  const endpoint = 'http://localhost:3003/user';
+  const endpoint = 'https://johnny-ebytr-backend.herokuapp.com/user';
   const token = localStorage.getItem('token');
 
   const responses = fetch(endpoint, {
