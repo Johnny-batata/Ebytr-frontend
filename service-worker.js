@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Ebytr-frontend/precache-manifest.9354e3cfc90ef2e6d6142301e23ef375.js"
+  "/Ebytr-frontend/precache-manifest.373bd5c7009a2c65819fecdc86230122.js"
 );
 
 self.addEventListener('message', (event) => {

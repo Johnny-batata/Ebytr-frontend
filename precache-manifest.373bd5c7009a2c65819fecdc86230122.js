@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "838dcbb96f5cc0f28f0eb440dc171239",
+    "revision": "6aa5138b11a1ef35b5ca02b9ecbd173f",
     "url": "/Ebytr-frontend/index.html"
   },
   {
-    "revision": "4e6326ae73a5bc1acd4a",
+    "revision": "1301c929c0b222e7b4f1",
     "url": "/Ebytr-frontend/static/css/main.d7c92d86.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Ebytr-frontend/static/js/2.371c2cb8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4e6326ae73a5bc1acd4a",
-    "url": "/Ebytr-frontend/static/js/main.57c959d4.chunk.js"
+    "revision": "1301c929c0b222e7b4f1",
+    "url": "/Ebytr-frontend/static/js/main.0e397ea3.chunk.js"
   },
   {
     "revision": "ae1c7fe7bf5cd4414a77",
